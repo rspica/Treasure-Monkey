@@ -8,24 +8,30 @@ var dropZone = $("#dropZone");
   })
 .on("dragover dragenter", function(e) {
 	dropZone.addClass('dropZoneDragover');	
-	console.log("this: "+this);
+  return false;
   })
 .on("drop dragleave dragend", function(e) {
 	dropZone.removeClass('dropZoneDragover');
-	console.log("this2: "+this);
+  return false;
 })
 .on('drop', function(e) {
+    var fileReader;
     droppedImageFiles = e.originalEvent.dataTransfer.files;
     var pImageFile = droppedImageFiles[0];
-    function callbackFunction(pImageFile){
-      global_droppedImage = pImageFile; //pass result to global var.
+    
+
+    droppedFiles = new Image();
+    fileReader = new FileReader();
+    filereader.onload = function(e) {
+      droppedFiles.src = e.target.result;
+      $(".dzImage").html(droppedFiles);
+    };
+    filerReader = readeAsDataURL(pImageFile);
+  });
 }
-    console.log("files: "+droppedFiles);
-console.log("file: "+pImageFile);
-});
+dropZone(target)
 
 
-console.log("file checking global scope: "+pImageFile);
 
 // function dragDrop(event) {
 // 	event.preventDefault();

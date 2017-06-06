@@ -6,112 +6,34 @@ var pImageFile;
 var droppedFiles = false;
 var dropZone = $("#dropZone");
 
+  dropZone.on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  })
+.on("dragover dragenter", function(e) {
+    dropZone.addClass('dropZoneDragover');  
+    return false;
+  })
+.on("drop dragleave dragend", function(e) {
+    dropZone.removeClass('dropZoneDragover');
+    return false;
+})
+.on('drop', function(e) {
+    var fileReader;
+    droppedImageFiles = e.originalEvent.dataTransfer.files;
+    var pImageFile = droppedImageFiles[0];
+    
 
-dropZone.on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-    })
-    .on("dragover dragenter", function(e) {
-        dropZone.addClass('dropZoneDragover');
-    })
-    .on("drop dragleave dragend", function(e) {
-        dropZone.removeClass('dropZoneDragover');
-    })
-    .on('drop', function(e) {
-        e.preventDefault();
-        droppedImageFiles = e.originalEvent.dataTransfer.files;
+    droppedFiles = new Image();
+    fileReader = new FileReader();
+    fileReader.onload = function(e) {
+      droppedFiles.src = e.target.result;
+      $(".dzImage").html(droppedFiles);
+    };
+    fileReader.readAsDataURL(pImageFile); //reads data on drop
+    console.log(droppedFiles);
+  });
 
-
-            for (var i = 0; i < files.length; i++) {
-                var reader = new FileReader(); 
-
-            }
-            
-            reader.onloadend = function(e) {  // finished reading file data.
-                var img = document.createElement('img');
-                img.src = e.target.result;
-                document.body.appendChild(img);
-            }
-
-            reader.readAsDataURL(file); // start reading the file data.
-        
-
-        console.log(img.scr);
-    });
-
-        //  pImageFile = droppedImageFiles[0];
-
-        // console.log(droppedFiles);
-        // console.log(pImageFile);
-        // console.log(JSON.stringify(pImageFile));
-        // });
-
-        // $("#dropZone").on('dragover', function(e) {
-        //     e.stopPropagation();
-        //     e.preventDefault();
-        //     console.log(e);
-        //     e.originalEvent.dataTransfer.dropEffect = 'copy';
-        // });
-
-        // $("#dropZone").on("drop", function(e){
-        //     e.preventDefault();
-        //     console.log(e);
-        //     var file = e.dataTransfer.files;
-        //     console.log(file);
-        // })
-        // drop(document.getElementById("dropZone"), function(response){
-        //     console.log(response);
-        //     console.log(response.read);
-        // });
-        // function drop(zone, callback) {
-        //     if (window.location.protocol === "file:")
-        //         throw new Error("File cannot be accessed via the file protocol.");
-        //     else if (!zone)
-        //         throw new Error("Dropzone is not valid.");
-        //     var fileData = {};
-        //     function cancel(event) {
-        //         console.log(event)
-        //         event.stopPropagation();
-        //         event.preventDefault();
-        //     }
-        //     function toggleCancel(event) {
-        //         console.log(event)
-        //         cancel(event);
-        //         zone.classList.toggle('drop-zone');
-        //     }
-        //     zone.addEventListener('dragenter', toggleCancel, false);
-        //     zone.addEventListener('dragover', cancel, false);
-        //     zone.addEventListener('dragleave', toggleCancel, false);
-        //     zone.addEventListener('drop', function(event) {
-        //         console.log(event);
-        //         toggleCancel(event);
-        //         var files = event.dataTransfer.files;
-        //         console.log(files)
-        //         for (var i = 0, len = files.length; i < len; i++){
-        //             fileData = {
-        //                 name: files[i].name,
-        //                 size: files[i].size,
-        //                 date: files[i].lastModifiedDate,
-        //                 type: files[i].type,
-        //                 originalFile: files[i]
-        //             };
-        //             console.log(fileData);
-        //             readFile(files[i]);
-        //         }
-        //     }, false);
-        //     function readFile(file) {
-        //         var reader = new FileReader();
-        //         reader.onload = handleResult;
-        //         if (file.type.indexOf('image') != -1)
-        //             reader.readAsDataURL(file);
-        //         else
-        //             reader.readAsText(file);
-        //     }
-        //     function handleResult(event) {
-        //         fileData.read = event.target.result;
-        //         callback(fileData);
-        //     }
-        // }
 
         //---------------------------------------------------------
         // ------------------- AUThENTICATION ---------------------
@@ -167,7 +89,8 @@ dropZone.on('drag dragstart dragend dragover dragenter dragleave drop', function
             var takeContain = $("#takeContain")
             var display = $("<div>");
 
-            var prodSpec = display.html('<a href="#"><img src="http://stevensegallery.com/200/300" alt=' + data.categoryName + '></a>' + "<p>" + data.prodDescription + "<p>");
+            var prodSpec = display.html('<a href="#"><img class="takeGalleryItem" src="http://stevensegallery.com/200/300" alt=' + data.categoryName + "></a><p class='Descript'>" + data.categoryName + "<br />" + data.prodDescription);
+            // var prodSpec = display.html('<a href="#">' + droppedFiles +'alt=' + data.categoryName + '></a>' + "<p>" + data.prodDescription + "<p>");
 
 
             takeContain.prepend(prodSpec);
@@ -187,7 +110,7 @@ dropZone.on('drag dragstart dragend dragover dragenter dragleave drop', function
             var contact = $("#contact").val().trim();
             var prodDescription = $("#prodDescription").val().trim();
             var categoryName = $("#categoryName").val().trim();
-            // var pImagefile = $("pImagefile").val().trim(); // pImageFile from drop.js
+            var droppedImage = droppedFiles
 
             // Creates local "temporary" object for holding product data
             // var newProduct = {
@@ -207,7 +130,7 @@ dropZone.on('drag dragstart dragend dragover dragenter dragleave drop', function
                 contact: contact,
                 prodDescription: prodDescription,
                 categoryName: categoryName,
-                pImagefile: pImagefile
+                droppedFiles: droppedImage
             }
 
             // Uploads product data to the database

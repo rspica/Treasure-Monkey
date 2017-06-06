@@ -61,6 +61,7 @@ input, textarea, select, #dropZone, .dropReport {
 #dropZone {
     flex-basis: 100%;
     text-align: center;
+    position: relative;
 }
 
 textarea, select, #dropZone {
@@ -83,6 +84,7 @@ input:focus, textarea:focus, select:focus {
     outline: none;
 }
 
+/* -- drag and drop styles-- */
 #dropZoneFile {
     width: 0.1px;
     height: 0.1px;
@@ -97,7 +99,15 @@ input:focus, textarea:focus, select:focus {
     outline: 1px dashed white;
     outline-offset: -5px;
     color: white;
-;
+}
+
+.dzImage {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    height: 70px;
+    width: 70px;
+    object-fit: contain;
 }
 
 /* -- reporting and error hanling on drag and drop --*/
@@ -114,10 +124,6 @@ i.fa {
     display: block;
     margin-bottom: 5px;
     text-align: center;
-}
-
-.inputfile {
-
 }
 
 .dropZoneFile + label, .dropZoneDND {
@@ -170,7 +176,6 @@ label:hover {
     margin-left: 50px;
     color: white;
 }
-
 
 .itemInfoContainer {
     padding-left: 50px;
