@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- Firebase link -->
-    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Londrina+Shadow|Montserrat:300,400,500,900" rel="stylesheet">
     <!-- CSS file -->
@@ -25,18 +23,13 @@
     <!-- CSS file -->
     <link rel="stylesheet" type="text/css" href="./assets/css/giveModal.css">
 
-    <!-- Javascript Modal file -->
-    <script type="text/javascript" src="assets/javascript/giveModal.js"></script>
-    <!-- Firebase file -->
-<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
-   <!-- Moment JS CDN -->
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
 
 </head>
 
 <body>
     <!-- give form modal window -->
-    <div id="giveModalWrapper">
+    <div class="modalWrapper">
         <div id="giveModal"><span class="xClose">&times;</span>
             <div class="modalPosition">
                 <form class="inputCont" action="#">
@@ -99,11 +92,6 @@
                     </div>
         </form>
                    
-                   
-                    <!-- <input type="file" name="prodPhoto" class="inputfile" data-multiple-caption="{count} files selected" multiple />
-                  <label for="prodPhoto"> Choose an image or Drop it like it hot</label>
-                  
-                </div> -->
                 </form>
             </div>
         </div>
@@ -129,7 +117,7 @@
             </div>
         </div>
         <div class="about">
-            <h3><span class="name ">Come &amp; Get It </span>is an open and free platform for the exchange of personal goods. Users can either post their gently used and no longer want items for others to pickup and give a new home to. This is on a first come first serve basis, what you see is what you get, its free. Your trash maybe someone else's treasure, so spread some love.
+            <h3>Treasure Monkey is an open and free platform for the exchange of personal goods. Users can either post their gently used and no longer want items for others to pickup and give a new home. This platform operates on a first come first serve basis, what you see is what you get, its free. Your trash maybe someone else's treasure, so spread some love so <span class="name ">Come &amp; Get It </span>.
             </h3>
         </div>
     </div>
@@ -139,46 +127,31 @@
             <button type="button" id="postItCall" class="give-Btn">Give something here
             </button>
         </div>
+        <div class="galleryWrapper"></div>
     </div>
 
     <!-- item view modal window -->
-    <div id="itemModal" class="modal fade" tabindex="1"><span class="xClose">&times;</span>
-        <div class="modalPosition">
-            <div class="itemView">
-                <br />
-                <br />
-                <br />
-                <h1><span class="categoryName"></span>Category name injected here</h1>
-                <br />
-                <br />
-                <br />
-                <img src="http://lorempixel.com/400/200" alt="Fjords" style="width:100% ">
-            <div class="itemView text-center">
-                <br /><br /><br />
-                <h1><span class="categoryName"></span>Category name injected here</h1>
-                <br /><br /><br />
-                <img class="img" src="http://lorempixel.com/400/200" alt="Fjords" style="width:80% ">
+<!--     <div id="itemModalWrapper"><span class="xClose">&times;</span>
+        <div id="itemModal"> -->
+            <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" data-dismiss="modal">
+                    <div class="modal-content">              
+                        <div class="modal-body">
+                            <button type="button" class="close x-btn" data-dismiss="modal"><span class="x-btn"aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <img src="" class="imagepreview" style="width: 100%;" >
+                        </div> 
+                        <div class="modal-footer">
+                            <div class="xxcol-xs-12">
+                                   <p class="text-left"><span class="itemDescript"></span></p>
 
-
-            </div>
-            <div class="itemInfoContainer">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div id="itemDescription">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt dolore, incidunt aut optio voluptatibus veritatis, ducimus consequatur alias facilis quia, placeat, expedita quam itaque labore! Ab facilis distinctio ullam reiciendis.
-                            </p>
-                            <br>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non veritatis voluptatem, reiciendis asperiores adipisci in cumque consequatur ab possimus expedita, a nihil eos hic vel dicta libero! Consequatur, eveniet.
-                            </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div id="map" style="width:400px; height:400px">USA</div>
+                        <div id="map" style="width:425px; height:425px">USA</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+<!--         </div>
+    </div>  -->   
 
     <script>
     function initMap() {
@@ -213,28 +186,18 @@
 
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL2xC58g1_PX9RsRPVGqcsv9ckelyHbW4&callback=initMap"></script>
-    <!--     <script>
-
-        $("button ").on("click ", function(e) {
-         var navPosition = ($(this).attr("value "));
-         console.log('navP:' + navPosition);
-         console.log('this: ' + this)
-         navBounce(navPosition);
-       });
-
-     //animates navigation on click event
-    function navBounce(value) {
-       console.log('value: ' + value)
-         $(".noButton ").addClass('navBounce');
-         $(".noButton ").on('animationend', function() {
-         $(".noButton ").removeClass('navBounce')
-         });
-    }
-    </script> -->
-    <script src="https://use.fontawesome.com/deca8cd297.js"></script>    
+   
+    <script src="https://use.fontawesome.com/deca8cd297.js"></script>  
+    <!-- Velocity JS CDN -->  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js "></script>
+
+    <!-- Firebase file -->
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+    <!-- Moment JS CDN -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <!-- Javascript Modal file -->
-    <script type="text/javascript" src="assets/javascript/giveModal.js"></script>
+    <script type="text/javascript" src="./assets/javascript/giveModal.js"></script>
+    <script type="text/javascript" src="./assets/javascript/itemModal.js"></script>
     <!-- javascript dBase and drag and drop feature -->
     <script type="text/javascript" src="./assets/javascript/database.js"></script>    
 
