@@ -1,67 +1,6 @@
 $(document).ready(function() {
     var giveModal = $("#giveModal");
-    var giveModalWrapper = $("#giveModalWrapper");
-
-    //---------------------------------------------
-    //------- give modal form activation  --------- 
-    //---------------------------------------------
-
-    (function() {
-        $(document).on("click", ".give-Btn", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        giveModalWrapper.css({
-            display: "block"
-        });
-
-        giveModal.css({
-            display: "block"
-        });
-
-        giveModal.addClass("animate");
-        giveModalReset();
-        });
-
-        $(".xClose, #post-Btn").click(function() {
-            giveModal.velocity({ translateY: ['100%'] }, { display: "none", opacity: "1" }, {
-                duration: 1000,
-                easing: "spring"
-            });
-            giveModalWrapperClear();
-        });
-
-    })();
-
-    // function activateGive() {
-    //     giveModal.velocity({translateY: ['0%', '-100%'] },{ display: "block", opacity: "1" }, {duration: 15000, easing: "spring"
-    //     });
-    // }
-
-    // $("#give-Btn").on("click", function(e) {
-    //     giveModal.css({
-    //         display: "block",
-    //         opacity: "1"
-    //     });
-    //     giveModal.addClass("animate");
-    //     giveModalReset();
-    // });
-
-    // $(".xClose").on("click", function(e) {
-    //     giveModal.velocity({
-    //         top: "100%",
-    //         opacity: "0"
-    //     });
-    //     giveModalReset();
-    // });
-
-    $("#post-Btn").on("click", function(e) {
-        giveModal.velocity({ translateY: ['100%'] }, { display: "none", opacity: "0" }, {
-            duration: 1000,
-            easing: "spring"
-        });
-    });
-
-
+    var modalWrapper = $(".modalWrapper");
 
     // giveModalReset();
     function giveModalReset() {
@@ -69,12 +8,55 @@ $(document).ready(function() {
             giveModal.removeClass("animate");
         });
     }
-    function giveModalWrapperClear() {
-        setInterval(function(){ 
-            giveModalWrapper.css({
-                display: "none"
-        }); }, 1000);
+    function xSubmitReset() {
+        giveModal.on('animationend', function() {
+            giveModal.removeClass("modalAnime");
+            modalWrapper.css("display", "none");
+        });
     }
+
+    // function modalWrapperClear() {
+    //     // setTimeout(function(){ 
+    //         modalWrapper.css({
+    //             display: "none"
+    //     }); // }, 100);
+
+
+
+
+    //---------------------------------------------
+    //------- give modal form activation  --------- 
+    //---------------------------------------------
+
+    $(document).on("click", ".give-Btn", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+console.log("event1: "+e);
+        modalWrapper.css("display", "block");
+        giveModal.addClass("animate");
+        giveModalReset();
+        });
+
+    modalWrapper.on("click",".xClose, #post-Btn", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        giveModal.addClass("modalAnime");
+        xSubmitReset();
+            // modalWrapperClear();
+     });
+
+
+
+    modalWrapper.on("click", "#post-Btn", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        giveModal.velocity({ translateY: ['100%'] }, { display: "none", opacity: "0" }, {
+            duration: 1000,
+            easing: "spring"
+        });
+        giveModalReset();
+    });
+
 
     //---------------------------------------------
     //-------------  nav pulse  ------------------- 
@@ -112,10 +94,19 @@ $(document).ready(function() {
             offset: -50,
             easing: "spring"
         });
-        var subNavPostContain = $(".subNavPostContain");
-        subNavPostContain.css({ visibility:"visible" });
-    });
-    $(".mainNav").on("scrolling", ".subNavPostContain", function(e) {
-        subNavPostContain.css({ visibility:"visible" });
+        setTimeout(function() {
+            var subNavPostContain = $(".subNavPostContain");
+            // subNavPostContain.css("visibility", "visible");
+            subNavPostContain.velocity({ translatex: ['-110%'] }, { visibility: "visible", opacity: "1" }, {
+            duration: 2000,
+            easing: "spring"
+        }, 1000);
+        });
+
+        $(".mainNav").on("scroll", ".subNavPostContain", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            subNavPostContain.css("visibility", "hidden");
+        });
     });
 });

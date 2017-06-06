@@ -76,25 +76,17 @@ var dropZone = $("#dropZone");
             console.log(data);
 
 
-
-            //     console.log("first: "+lastObj.firstName)
-            //     console.log("last: "+lastObj.lastName);
-            //     console.log("Zip: "+lastObj.zipCode);
-            //     console.log("contact: "+lastObj.contact);
-            //     console.log("Descript: "+lastObj.prodDescription);
-            //     console.log("category: "+lastObj.categoryName)
-            //     console.log("prodImage: "+lastObj.pImageFile)
-
-
-            var takeContain = $("#takeContain")
+            var galleryWrapper = $(".galleryWrapper")
             var display = $("<div>");
 
-            var prodSpec = display.html('<a href="#"><img class="takeGalleryItem" src="http://stevensegallery.com/200/300" alt=' + data.categoryName + "></a><p class='Descript'>" + data.categoryName + "<br />" + data.prodDescription);
-            // var prodSpec = display.html('<a href="#">' + droppedFiles +'alt=' + data.categoryName + '></a>' + "<p>" + data.prodDescription + "<p>");
+            var prodSpec = display.html('<a href="#" class="takeItem"><img src="http://stevensegallery.com/200/300" alt=' + data.categoryName + "></a><p class='Descript'>" + data.categoryName + "<br />" + data.prodDescription + "<p class='Descript'>Date posted: ");
+            // var prodSpec = display.html('<a href="#">' + droppedFiles +'alt=' + data.categoryName + "></a><p class='Descript'>" + data.categoryName + "<br />" + data.prodDescription);
 
+            $(".itemDescript").html("<p class=''>" + data.categoryName + "<br />" + data.prodDescription + "<p>" + "<br /><p>Date posted: " );
 
-            takeContain.prepend(prodSpec);
-            takeContain.addClass("takeGallery");
+            galleryWrapper.prepend(prodSpec);
+            display.addClass("takeGalleryItem");
+            console.log("image: "+droppedFiles);
         });
 
 
@@ -140,5 +132,5 @@ var dropZone = $("#dropZone");
             // console.log(newProduct);
 
 
-            // console.log(moment().format("MMMM Do YYYY, h:mm:ss a"))
+            console.log(moment().format("MMMM Do YYYY, h:mm:ss a"))
         });
