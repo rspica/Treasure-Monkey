@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>Come&amp;GetIt</title>
+
+  <!-- Jquery CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Firebase link -->
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Londrina+Shadow|Montserrat:300,400,500,900" rel="stylesheet">
+    <!-- CSS file -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+    <!-- CSS file -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <!-- CSS file -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/giveModal.css">
+
+    <!-- Javascript Modal file -->
+    <script type="text/javascript" src="assets/javascript/giveModal.js"></script>
+    <!-- Firebase file -->
+<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+   <!-- Moment JS CDN -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+</head>
+
+<body>
+    <!-- give form modal window -->
+    <div id="giveModalWrapper">
+        <div id="giveModal"><span class="xClose">&times;</span>
+            <div class="modalPosition">
+                <form class="inputCont" action="#">
+                    <div class="form-row">
+                        <input id="firstName" class="inputField" type="text" placeholder="First name" name="firstname" required ">
+
+                        <input id="lastName" class="inputField" type="text" placeholder="Last name" name="lastname" required">
+                    </div>
+                    <div class="form-row">
+                        <input id="zipCode" class="inputField" type="text" placeholder="Zip code" name="zipcode" required ">
+
+                        <input id="contact" class="inputField " type="email" placeholder="Enter contact: phone or email" name="email" required>
+                    </div>
+
+                    <div class="form-row">
+                        <select id="categoryName" class="inputField" name="Categories" placeholder="Select a category " required>
+                            <option value\" disabled selected hidden>Choose a category...</option>
+                            <option value="Antiques">Antiques</option>
+                            <option value="Appliances">Appliances</option>
+                            <option value="Arts+crafts">Arts + Crafts</option>
+                            <option value="auto parts">Auto parts</option>
+                            <option value="Baby+kid">Baby + Kid</option>
+                            <option value="Bikes">Bikes</option>
+                            <option value="Boats">Boats</option>
+                            <option value="Books">Books</option>
+                            <option value="Building materials">Building materials</option>
+                            <option value="Clothes+accessories">Clothes + Accessories</option>
+                            <option value="Consumer electronics">Consumer electronics</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="Housewares">Housewares</option>
+                            <option value="Music instruments">Music instruments</option>
+                            <option value="Sporting">Sporting goods</option>
+                            <option value="Tools">Tools</option>
+                            <option value="Toys+gamesYo
+                            ">Toys + Games</option>
+                        </select>
+
+                        <textarea id="prodDescription" class="inputField" name="prod-descript" form="prod-descript " required ">Enter a brief description here </textarea>
+                    </div>
+
+
+                    <div class="form-row">
+                        <form class="" method="post" action="" enctype="multipart/form-data">
+                            <div id="dropZone">
+                                <i class="fa fa-upload" aria-hidden="true"></i>
+                                <input id="dropZoneFile" type="file" name="files[]" data-multiple-caption="{count} files selected" multiple />
+                                <label for="dropZoneFile"><strong>Choose a file </strong><span class="dropZoneDND"> | or drop it like it's hot</span>.</label>
+                            </div>
+                            <div class="DropReport">
+                                <div class="dropZoneUploading">Uploading&hellip;</div>
+                                <div class="dropZoneSuccess">Done!</div>
+                                <div class="dropZoneErr">Error! <span></span>.</div>
+                            </div>
+                    </div>  
+                    <div class="form-row">
+                        <button id="post-Btn" type="submit ">Post It
+                            <a href="#takeContain"></a>
+                        </button>
+                    </div>
+        </form>
+                   
+                   
+                    <!-- <input type="file" name="prodPhoto" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+                  <label for="prodPhoto"> Choose an image or Drop it like it hot</label>
+                  
+                </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--closes giveModalWrapper -->
+    <!-- main landing page with two button nav give/take-->
+    <div class="homeContainer">
+        <div class="mainNav">
+            <div class=" border-Btn give-Btn">
+                <button type="button" id="give-BtnMain" class="nav-Btn" value="Give">
+                    <a href="#"><h1 class="title">Give</h1></a>
+                </button>
+            </div>
+            <div class="take-Btn">
+                <button type="button" id="take-BtnMain" class="nav-Btn" value="take">
+                    <a href="#takeContain"><h1 class="title">Take</h1></a>
+                </button>
+            </div>
+        </div>
+        <div class="about">
+            <h3><span class="name ">Come &amp; Get It </span>is an open and free platform for the exchange of personal goods. Users can either post their gently used and no longer want items for others to pickup and give a new home to. This is on a first come first serve basis, what you see is what you get, its free. Your trash maybe someone else's treasure, so spread some love.
+            </h3>
+        </div>
+    </div>
+    <!-- Take portfolio page -->
+    <div id="takeContain">
+        <div class="subNavPostContain">
+            <button type="button" id="postItCall" class="give-Btn">Give something here
+            </button>
+        </div>
+    </div>
+       <!--  <h1 class="recent">Most Recent</h1>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="thumbnail">
+                    <a href="#">
+                        <img src="http://lorempixel.com/400/200 " alt="Lights " style="width:100%">
+                        <div class="caption">
+                            <p>Lorem ipsum...</p>
+                        </div>
+                    </a>
+
+            <h1 class="recent">Most Recent</h1>
+
+         <div class="container">
+        <div class="row">
+        <ul class="thumbnail" data-toggle="modal" >
+     <li class="col-lg-4"><a href="#itemModal" data-toggle="modal" data-target="#itemModal" class="thumbnail"><img src="http://lorempixel.com/400/200 " alt="recent" style="width:100%"></a></li>
+       <li class="col-lg-4"><a href="#itemModal" data-toggle="modal" data-target="#itemModal" class="thumbnail"><img src="http://lorempixel.com/400/200 " alt="recent" style="width:100%"></a></li>
+        <li class="col-lg-4"><a href="#itemModal" data-toggle="modal" data-target="#itemModal" class="thumbnail"><img src="http://lorempixel.com/400/200 " alt="recent" style="width:100%"></a></li>
+        </ul>
+        </div>
+        </div>
+      
+
+
+
+EXAMPLE ABOVE -->
+<!-- 
+         <div class="row">
+          <div class="col-lg-3">
+            <div class="thumbnail">
+               <a href="#itemModal">
+                <img src="http://lorempixel.com/400/200 " alt="Lights " style="width:100%">
+               <div class="caption">
+                  <p>Lorem ipsum...</p>
+
+                </div>
+            </div>
+
+
+        <h1 class="recent">Most Recent</h1>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="thumbnail">
+                    <a href="# ">
+                        <img src="http://lorempixel.com/400/200" alt="Nature" style="width:100%">
+                        <div class="caption">
+                            <p>Lorem ipsum...</p>
+                        </div>
+
+          </div>
+          <div class="col-lg-3">
+            <div class="thumbnail">
+              <a href="#itemModal">
+                <img src="http://lorempixel.com/400/200" alt="Nature" style="width:100%">
+                <div class="caption">
+                  <p>Lorem ipsum...</p>
+
+                </div>
+            </div>
+      </div>
+           
+
+
+            <div class="col-lg-3">
+                <div class="thumbnail">
+                    <a href="# ">
+                        <img src="http://lorempixel.com/400/200" alt="Fjords" style="width:100% ">
+                        <div class="caption">
+                            <p>Lorem ipsum...</p>
+                        </div>
+                    </a>
+
+          </div>
+          <div class="col-lg-3">
+            <div class="thumbnail">
+              <a href="#itemModal">
+                <img src="http://lorempixel.com/400/200" alt="Fjords" style="width:100% ">
+                <div class="caption">
+                  <p>Lorem ipsum...</p>
+
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="thumbnail">
+                    <a href="# ">
+                        <img src="http://lorempixel.com/400/200" alt="Fjords" style="width:100% ">
+                        <div class="caption">
+                            <p>Lorem ipsum...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div> -->
+
+    <!-- item view modal window -->
+    <div id="itemModal" class="modal fade" tabindex="1"><span class="xClose">&times;</span>
+        <div class="modalPosition">
+            <div class="itemView">
+                <br />
+                <br />
+                <br />
+                <h1><span class="categoryName"></span>Category name injected here</h1>
+                <br />
+                <br />
+                <br />
+                <img src="http://lorempixel.com/400/200" alt="Fjords" style="width:100% ">
+            <div class="itemView text-center">
+                <br /><br /><br />
+                <h1><span class="categoryName"></span>Category name injected here</h1>
+                <br /><br /><br />
+                <img class="img" src="http://lorempixel.com/400/200" alt="Fjords" style="width:80% ">
+
+
+            </div>
+            <div class="itemInfoContainer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="itemDescription">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt dolore, incidunt aut optio voluptatibus veritatis, ducimus consequatur alias facilis quia, placeat, expedita quam itaque labore! Ab facilis distinctio ullam reiciendis.
+                            </p>
+                            <br>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non veritatis voluptatem, reiciendis asperiores adipisci in cumque consequatur ab possimus expedita, a nihil eos hic vel dicta libero! Consequatur, eveniet.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="map" style="width:400px; height:400px">USA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: {
+                lat: 39.833851,
+                lng: -74.871826
+            }
+        });
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+          geocodeAddress(geocoder, map);
+        });
+      }
+
+      function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL2xC58g1_PX9RsRPVGqcsv9ckelyHbW4&callback=initMap"></script>
+    <!--     <script>
+
+        $("button ").on("click ", function(e) {
+         var navPosition = ($(this).attr("value "));
+         console.log('navP:' + navPosition);
+         console.log('this: ' + this)
+         navBounce(navPosition);
+       });
+
+     //animates navigation on click event
+    function navBounce(value) {
+       console.log('value: ' + value)
+         $(".noButton ").addClass('navBounce');
+         $(".noButton ").on('animationend', function() {
+         $(".noButton ").removeClass('navBounce')
+         });
+    }
+    </script> -->
+    <script src="https://use.fontawesome.com/deca8cd297.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js "></script>
+    <!-- Javascript Modal file -->
+    <script type="text/javascript" src="assets/javascript/giveModal.js"></script>
+    <!-- javascript dBase and drag and drop feature -->
+    <script type="text/javascript" src="./assets/javascript/database.js"></script>    
+
+</body>
+
+</html>

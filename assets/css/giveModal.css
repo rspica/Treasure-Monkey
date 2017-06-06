@@ -1,0 +1,250 @@
+body {
+    max-width: 1024px;
+}
+
+#giveModalWrapper {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;    
+    overflow: auto;
+    display: none;
+}
+
+#giveModal, #itemModal {
+    position: relative;
+    font: 400 .6em 'Montserrat', sans-serif;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+}
+
+#giveModal {
+        position: absolute;
+}
+
+.inputCont {
+    max-width: 1024px;
+    padding: 0 5%;
+    margin: 10% auto 15% auto; 
+    width: 90%; 
+}
+
+.form-row {
+    width: 100%; 
+    display: flex;
+    justify-content: space-between;
+    overflow: auto;
+}
+
+input, textarea, select, #dropZone, .dropReport {
+    flex-basis: 48.75%;
+    height: 100px;
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    color: rgb(152, 170, 181);
+    background: rgb(211, 238, 255);
+    -webkit-appearance: none;
+    border-radius: 0px;
+    border: 0;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+#dropZone {
+    flex-basis: 100%;
+    text-align: center;
+}
+
+textarea, select, #dropZone {
+    font-size: 1.5em; 
+}
+
+textarea {
+    padding-top: 40px;
+}
+
+input {
+    height: 45px;
+}
+
+input::placeholder {
+    font-size: 1.5em; 
+    color: rgb(152, 170, 181);
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+}
+
+#dropZoneFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+#dropZone.dropZoneDragover {
+    background: black;
+    outline: 1px dashed white;
+    outline-offset: -5px;
+    color: white;
+;
+}
+
+/* -- reporting and error hanling on drag and drop --*/
+/*dropZoneDND*/
+.dropZoneDND,
+.dropZoneUploading,
+.dropZoneSuccess,
+.dropZoneErr {
+  display: none;
+}
+
+i.fa {
+    font-size: 2.2em;
+    display: block;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.inputfile {
+
+}
+
+.dropZoneFile + label, .dropZoneDND {
+    display: inline-block;
+    font: 400 1em 'Montserrat', sans-serif;
+    color: rgb(152, 170, 181);
+    line-height: 1px;
+    text-align: center;
+    cursor: pointer;
+}
+
+label:hover {
+    color: #00AB9E;
+}
+
+#post-Btn {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 1em; 
+    background: #00AB9E;
+    color: #263353;
+    border: 0;
+}
+
+#post-Btn:hover {
+    opacity: 0.5;
+}
+
+/* Product Description Modal*/
+.itemView {
+    /*position: relative;*/
+    font-size: 35px;
+    /*text-align: left;*/
+    color: white;
+}
+
+.img {
+    border-radius: 15px;
+    border: 10px solid;
+    border-color: white;
+}
+
+.recent {
+    font-size: 40px;
+}
+
+#itemDescription {
+    font-size: 18px;
+    text-align: left;
+    margin-left: 50px;
+    color: white;
+}
+
+
+.itemInfoContainer {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+/* The Close Button (x) upper right corner*/
+.xClose {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: rgb(255, 255, 255);
+    font-size: 36px;
+}
+
+.xClose:hover,
+.xClose:focus {
+    color: rgb(229, 47, 49);
+    cursor: pointer;
+}
+    
+
+@media screen and (max-width: 600px) {
+    .form-row {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .form-row {
+        display: block;
+    }
+}
+
+/* Animation */
+.animate {
+    -webkit-animation: animateTopIn .6s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    animation: animateTopIn .6s cubic-bezier(0.680, -0.550, 0.265, 1.550);
+   
+}
+
+/* Add Animation incoming */
+@-webkit-keyframes animateTopIn {
+    from {top: -900px; opacity: 0} 
+    to {top: 0; opacity: 1}
+}
+
+@keyframes animateTopIn {
+    from {top: -900px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 600px) {
+
+    .form-row {
+    display: inline-block;
+    }
+
+    input, textarea, select {
+    width: 100%;
+    margin-top: 20px;
+    }
+
+    select {
+    height: 45px;
+    }
+
+    button {
+        text-align: left;
+    }
+
+}
+
+
+
