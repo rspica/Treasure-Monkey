@@ -14,12 +14,12 @@ With the command line:
 
 #### The landing page:
 
-<img width="815" alt="Treasure Monkey home page" src="https://github.com/rspica/Treasure-Monkey/blob/master/app/public/images/TreasureMonkey-Home.png">
+<img width="815" alt="Treasure Monkey home page" src="https://github.com/rspica/Treasure-Monkey/blob/master/images/TreasureMonkey-Home.png">
 
 
 #### Post item form:
 
-<img width="815" alt="Treasure Monkey post-item form" src="https://github.com/rspica/Treasure-Monkey/blob/master/app/public/images/TreasureMonkey-form.png">
+<img width="815" alt="Treasure Monkey post-item form" src="https://github.com/rspica/Treasure-Monkey/blob/master/images/TreasureMonkey-form.png">
 
 
 ## Technical details
