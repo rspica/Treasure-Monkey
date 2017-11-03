@@ -5,12 +5,10 @@ A give and take free exchange of gently used products. This experimental web app
 
 To install the Treasure Monkey application locally follow the instructions below:
 
-With the command line:
-
 * 1 `git clone https://github.com/rspica/Treasure-Monkey`
-* 2 Run Treasure Monkey via a Google browser. Drag 
+* 2 Run Treasure Monkey via a Google browser.
 
-##### Treasure Monkey is a one page app
+##### Treasure Monkey is a single page application
 
 #### The landing page:
 
