@@ -14,12 +14,12 @@ With the command line:
 
 #### The landing page:
 
-<img width="815" alt="Friend Finder home page" src="https://github.com/rspica/Treasure-Monkey/blob/master/app/public/images/ff-landingPage.png">
+<img width="815" alt="Treasure Monkey home page" src="https://github.com/rspica/Treasure-Monkey/blob/master/app/public/images/ff-landingPage.png">
 
 
 #### Post item form:
 
-<img width="815" alt="Friend Finder home page" src="https://github.com/rspica/Treasure-Monkey/blob/master/app/public/images/ff-landingPage.png">
+<img width="815" alt="Treasure Monkey post-item form" src="https://github.com/rspica/Treasure-Monkey/blob/master/app/public/images/ff-landingPage.png">
 
 
 ## Technical details
